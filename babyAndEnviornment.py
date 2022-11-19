@@ -19,21 +19,18 @@ class Baby:
             self.Temp += round(random.uniform(-1,1),2)
             self.Temp = round(self.Temp,2)
             self.vitals = {"HR":self.HR, "Temp":self.Temp, "BP":self.BP}
-        
+       
 
 class IncEnviornment:
+    #Instance variables humidity and oxygene inside vars list
+
     def __init__(self):
         self.humidity = random.randint(30,90)
+        self.oxygene = random.randint(18,22)
         self.start = time.time()
+        self.vars = self.humidity, self.oxygene
     def live(self):
-        self.humidity += random.uniform(-1,1)
-        self.humidity = round(self.humidity,2)
         if time.time() - self.start >=1:
- 
-a = Baby()
-b = IncEnviornment()
-
-while True:
-    a.live()
-    b.live()
-    time.sleep(1)
+            self.humidity += random.uniform(-1,1)
+            self.oxygene += random.uniform(-1,1)
+            self.vars = round(self.humidity,2), round(self.humidity,2)
