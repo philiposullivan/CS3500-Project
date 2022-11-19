@@ -1,4 +1,4 @@
-from babyAndEnviornment import Baby, IncEnviornment
+from python import Baby, IncEnviornment
 
 from tkinter import *
 from tkinter.ttk import *
@@ -18,20 +18,124 @@ x = w/2
 y = h/2
 
 
-def update():
-    a.live()
-    b.live()
-    heartrateValues = Label(root, text = (a.vitals["HR"]))
-    heartrateValues.place(x=200, y=100)
-    temperatureValues = Label(root, text = (a.vitals["Temp"]))
-    temperatureValues.place(x=200, y=200)
-    oxygenValues = Label(root, text = b.vars[1])
-    oxygenValues.place(x=200, y=300)
-    humidityValues = Label(root, text = b.vars[0])
-    humidityValues.place(x=200, y=400)
-    bloodpressureValues = Label(root, text = (a.vitals["BP"][0], "/", a.vitals["BP"][1]))
-    bloodpressureValues.place(x=200, y=500)
-    root.after(1000,update)
+from tkinter import *
+from tkinter.ttk import * 
+class Shape():
+    def __init__(self, master = None):
+        self.master = master
+         
+        # Calls create method of class Shape
+        self.create()
+     
+    def create(self):
+         
+        # Creates a object of class canvas
+        # with the help of this we can create different shapes
+        self.canvas = Canvas(self.master)
+ 
+        # Creates a circle of diameter 80
+        self.canvas.create_oval(320, 20, 400, 100,
+                            outline = "black",fill = "white",
+                            width = 2)
+         
+        # Creates an ellipse with horizontal diameter
+        # of 210 and vertical diameter of 80
+        self.canvas.create_oval(320, 120, 400, 200,
+                            outline = "black",fill = "white",
+                            width = 2)
+        
+        self.canvas.create_oval(320, 220, 400, 300,
+                            outline = "black",fill = "white",
+                            width = 2)
+
+        self.canvas.create_oval(320, 320, 400, 400,
+                            outline = "black",fill = "white",
+                            width = 2)
+
+        self.canvas.create_oval(320, 420, 400, 500,
+                            outline = "black",fill = "white",
+                            width = 2)
+        # Creates a rectangle of 50x60 (heightxwidth)
+        '''
+        self.canvas.create_rectangle(230, 10, 290, 60,
+                                outline = "black", fill = "blue",
+                                width = 2)
+         
+        # Creates an arc of 210 deg
+        self.canvas.create_arc(30, 200, 90, 100, start = 0,
+                          extent = 210, outline = "green",
+                          fill = "red", width = 2)
+         
+        points = [150, 100, 200, 120, 240, 180,
+                  210, 200, 150, 150, 100, 200]
+         
+        # Creates a polygon
+        self.canvas.create_polygon(points, outline = "blue",
+                              fill = "orange", width = 2)
+        # Pack the canvas to the main window and make it expandable
+        '''
+        self.canvas.pack(fill = BOTH, expand = 1)
+
+    def update(self):
+        a.live()
+        b.live()
+        heartrateValues = Label(root, text = (a.vitals["HR"]))
+        heartrateValues.place(x=200, y=100)
+        temperatureValues = Label(root, text = (a.vitals["Temp"]))
+        temperatureValues.place(x=200, y=200)
+        oxygenValues = Label(root, text = b.vars[1])
+        oxygenValues.place(x=200, y=300)
+        humidityValues = Label(root, text = b.vars[0])
+        humidityValues.place(x=200, y=400)
+        bloodpressureValues = Label(root, text = (a.vitals["BP"][0], "/", a.vitals["BP"][1]))
+        bloodpressureValues.place(x=200, y=500)
+        if a.vitals["HR"] > 100 or a.vitals["HR"] < 60:
+            self.HRcolour = 'red'
+        else:
+            self.HRcolour = 'green'
+        if a.vitals["Temp"] > 40 or a.vitals["Temp"] < 35:
+            self.Tempcolour = 'red'
+        else:
+            self.Tempcolour = 'green'
+        if b.vars[1] <  20:
+            self.Oxygenecolour = 'red'
+        else:
+            self.Oxygenecolour = 'green'
+        if b.vars[0] > 35 or b.vars[0] < 20:
+            self.humiditycolour = 'red'
+        else:
+            self.humidity.colour = 'green'
+        if a.vitals["BP"][0] >200 or a.vitals["BP"][0] < 60:
+            self.BPcolour = 'red'
+        else:
+            self.BPcolour = 'green'
+        
+        self.canvas = Canvas(self.master)
+        # Creates a circle of diameter 80
+        
+        HR = self.canvas.create_oval(320, 20, 400, 100,
+                            outline = "red",fill = 'red',
+                            width = 2)
+        self.canvas.tag_raise(HR)
+      
+        # Creates an ellipse with horizontal diameter
+        # of 210 and vertical diameter of 80
+        self.canvas.create_oval(320, 120, 400, 200,
+                            outline = "black",fill = self.Tempcolour,
+                            width = 2)
+        
+        self.canvas.create_oval(320, 220, 400, 300,
+                            outline = "black",fill = self.Oxygenecolour,
+                            width = 2)
+
+        self.canvas.create_oval(320, 320, 400, 400,
+                            outline = "black",fill = self.humiditycolour,
+                            width = 2)
+
+        self.canvas.create_oval(320, 420, 400, 500,
+                            outline = "black",fill = self.BPcolour,
+                            width = 2)
+        root.after(1000,self.update)
 #Labels
     
 #display measured values
@@ -67,6 +171,6 @@ humidityValues = Label(root, text = b.humidity)
 humidityValues.place(x=200, y=400)
 bloodpressureValues = Label(root, text = (a.BP[0], "/", a.BP[1]))
 bloodpressureValues.place(x=200, y=500)
-
-root.after(1000, update)
+shape = Shape(root)
+root.after(1000, shape.update)
 root.mainloop()
