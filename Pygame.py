@@ -1,3 +1,4 @@
+
 from python import Baby, IncEnviornment
 
 from tkinter import *
@@ -28,7 +29,7 @@ class Shape():
         self.create()
      
     def create(self):
-         
+        '''
         # Creates a object of class canvas
         # with the help of this we can create different shapes
         self.canvas = Canvas(self.master)
@@ -56,7 +57,7 @@ class Shape():
                             outline = "black",fill = "white",
                             width = 2)
         # Creates a rectangle of 50x60 (heightxwidth)
-        '''
+        
         self.canvas.create_rectangle(230, 10, 290, 60,
                                 outline = "black", fill = "blue",
                                 width = 2)
@@ -74,7 +75,6 @@ class Shape():
                               fill = "orange", width = 2)
         # Pack the canvas to the main window and make it expandable
         '''
-        self.canvas.pack(fill = BOTH, expand = 1)
 
     def update(self):
         a.live()
@@ -114,7 +114,7 @@ class Shape():
         # Creates a circle of diameter 80
         
         HR = self.canvas.create_oval(320, 20, 400, 100,
-                            outline = "red",fill = 'red',
+                            outline = "black",fill = self.HRcolour,
                             width = 2)
         self.canvas.tag_raise(HR)
       
@@ -135,6 +135,7 @@ class Shape():
         self.canvas.create_oval(320, 420, 400, 500,
                             outline = "black",fill = self.BPcolour,
                             width = 2)
+        self.canvas.pack(fill = BOTH, expand = 1)
         root.after(1000,self.update)
 #Labels
     
@@ -174,3 +175,4 @@ bloodpressureValues.place(x=200, y=500)
 shape = Shape(root)
 root.after(1000, shape.update)
 root.mainloop()
+
