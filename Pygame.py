@@ -1,5 +1,4 @@
-
-from python import Baby, IncEnviornment
+from babyAndEnviornment import Baby, IncEnviornment
 
 from tkinter import *
 from tkinter.ttk import *
