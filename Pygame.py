@@ -22,14 +22,17 @@ y = h/2
 from tkinter import *
 from tkinter.ttk import * 
 class Shape():
-    def __init__(self, master = None):
+    def __init__(self, master):
         self.master = master
          
         # Calls create method of class Shape
         self.create()
         self.canvas = Canvas(self.master)
         self.canvas.pack(fill = BOTH, expand=2)
-        Title = Label(root, text = 'Noenatal Intesive Care Unit Monitor', font =('Verdana', 15) )
+        #logo = PhotoImage(file="C:\Users\Tim\Downloads\icons8-heart-with-pulse-16.png")
+        #Label(root, image=logo).pack(side="right")
+    
+        Title = Label(root, text = 'Noenatal Intesive Care Unit Monitor', font =('Verdana', 15), background='red', padding=10)
         Title.place( x=0,y=0)
         heartrate = Label(root, text = str("Heart Rate"))
         heartrate.place(x=15, y=100)
