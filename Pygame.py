@@ -29,7 +29,8 @@ class Shape():
         self.create()
         self.canvas = Canvas(self.master)
         self.canvas.pack(fill = BOTH, expand=2)
-        Label(root, text = 'Noenatal Intesive Care Unit Monitor', font =('Verdana', 15)).pack(side = TOP, pady=10) 
+        Title = Label(root, text = 'Noenatal Intesive Care Unit Monitor', font =('Verdana', 15) )
+        Title.place( x=0,y=0)
         heartrate = Label(root, text = str("Heart Rate"))
         heartrate.place(x=15, y=100)
         temperature = Label(root, text = "Temperature")
@@ -40,7 +41,7 @@ class Shape():
         humidity.place(x=15, y=400)
         bloodpressure = Label(root, text = "Bloodpressure")
         bloodpressure.place(x=15, y=500)
-        
+
     def create(self):
         '''
         # Creates a object of class canvas
@@ -139,26 +140,26 @@ class Shape():
         
         # Creates a circle of diameter 80
         
-        self.canvas.create_oval(320, 20, 400, 100,
+        self.canvas.create_oval(320, 70, 400, 150,
                             outline = "black",fill = self.HRcolour,
                             width = 2, tags='oval')
 
         
         # Creates an ellipse with horizontal diameter
         # of 210 and vertical diameter of 80
-        self.canvas.create_oval(320, 120, 400, 200,
+        self.canvas.create_oval(320, 170, 400, 250,
                             outline = "black",fill = self.Tempcolour,
                             width = 2)
         
-        self.canvas.create_oval(320, 220, 400, 300,
+        self.canvas.create_oval(320, 270, 400, 350,
                             outline = "black",fill = self.Oxygenecolour,
                             width = 2)
 
-        self.canvas.create_oval(320, 320, 400, 400,
+        self.canvas.create_oval(320, 370, 400, 450,
                             outline = "black",fill = self.humiditycolour,
                             width = 2)
 
-        self.canvas.create_oval(320, 420, 400, 500,
+        self.canvas.create_oval(320, 470, 400, 550,
                             outline = "black",fill = self.BPcolour,
                             width = 2)
         
