@@ -27,6 +27,7 @@ class Shape():
          
         # Calls create method of class Shape
         self.create()
+        self.canvas = Canvas(self.master)
      
     def create(self):
         '''
@@ -56,6 +57,7 @@ class Shape():
         self.canvas.create_oval(320, 420, 400, 500,
                             outline = "black",fill = "white",
                             width = 2)
+        
         # Creates a rectangle of 50x60 (heightxwidth)
         
         self.canvas.create_rectangle(230, 10, 290, 60,
@@ -104,20 +106,19 @@ class Shape():
         if b.vars[0] > 35 or b.vars[0] < 20:
             self.humiditycolour = 'red'
         else:
-            self.humidity.colour = 'green'
+            self.humiditycolour = 'green'
         if a.vitals["BP"][0] >200 or a.vitals["BP"][0] < 60:
             self.BPcolour = 'red'
         else:
             self.BPcolour = 'green'
         
-        self.canvas = Canvas(self.master)
         # Creates a circle of diameter 80
         
-        HR = self.canvas.create_oval(320, 20, 400, 100,
+        self.canvas.create_oval(320, 20, 400, 100,
                             outline = "black",fill = self.HRcolour,
-                            width = 2)
-        self.canvas.tag_raise(HR)
-      
+                            width = 2, tags='oval')
+
+        
         # Creates an ellipse with horizontal diameter
         # of 210 and vertical diameter of 80
         self.canvas.create_oval(320, 120, 400, 200,
@@ -135,7 +136,8 @@ class Shape():
         self.canvas.create_oval(320, 420, 400, 500,
                             outline = "black",fill = self.BPcolour,
                             width = 2)
-        self.canvas.pack(fill = BOTH, expand = 1)
+        
+        self.canvas.pack(fill = BOTH, expand=2)
         root.after(1000,self.update)
 #Labels
     
