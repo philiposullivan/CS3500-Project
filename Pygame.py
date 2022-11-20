@@ -28,7 +28,19 @@ class Shape():
         # Calls create method of class Shape
         self.create()
         self.canvas = Canvas(self.master)
-     
+        self.canvas.pack(fill = BOTH, expand=2)
+        Label(root, text = 'Noenatal Intesive Care Unit Monitor', font =('Verdana', 15)).pack(side = TOP, pady=10) 
+        heartrate = Label(root, text = str("Heart Rate"))
+        heartrate.place(x=15, y=100)
+        temperature = Label(root, text = "Temperature")
+        temperature.place(x=15, y=200)
+        oxygen = Label(root, text = "Oxygen")
+        oxygen.place(x=15, y=300)
+        humidity = Label(root, text = "Humidity")
+        humidity.place(x=15, y=400)
+        bloodpressure = Label(root, text = "Bloodpressure")
+        bloodpressure.place(x=15, y=500)
+        
     def create(self):
         '''
         # Creates a object of class canvas
@@ -81,6 +93,7 @@ class Shape():
     def update(self):
         a.live()
         b.live()
+        
         heartrateValues = Label(root, text = (a.vitals["HR"]))
         heartrateValues.place(x=200, y=100)
         temperatureValues = Label(root, text = (a.vitals["Temp"]))
@@ -91,6 +104,18 @@ class Shape():
         humidityValues.place(x=200, y=400)
         bloodpressureValues = Label(root, text = (a.vitals["BP"][0], "/", a.vitals["BP"][1]))
         bloodpressureValues.place(x=200, y=500)
+        heartrate = Label(root, text = str("Heart Rate"))
+        heartrate.place(x=15, y=100)
+        temperature = Label(root, text = "Temperature")
+        temperature.place(x=15, y=200)
+        oxygen = Label(root, text = "Oxygen")
+        oxygen.place(x=15, y=300)
+        humidity = Label(root, text = "Humidity")
+        humidity.place(x=15, y=400)
+        bloodpressure = Label(root, text = "Bloodpressure")
+        bloodpressure.place(x=15, y=500)
+        
+
         if a.vitals["HR"] > 100 or a.vitals["HR"] < 60:
             self.HRcolour = 'red'
         else:
@@ -137,7 +162,7 @@ class Shape():
                             outline = "black",fill = self.BPcolour,
                             width = 2)
         
-        self.canvas.pack(fill = BOTH, expand=2)
+        self.canvas.pack( expand=2)
         root.after(1000,self.update)
 #Labels
     
@@ -151,7 +176,7 @@ class Shape():
 #label1.place(x=10, y=50, w=20, h= 30)
 #self.update() Think this could be used to get the interface to update
 
-    
+'''
 heartrate = Label(root, text = str("Heart Rate"))
 heartrate.place(x=15, y=100)
 temperature = Label(root, text = "Temperature")
@@ -174,6 +199,7 @@ humidityValues = Label(root, text = b.humidity)
 humidityValues.place(x=200, y=400)
 bloodpressureValues = Label(root, text = (a.BP[0], "/", a.BP[1]))
 bloodpressureValues.place(x=200, y=500)
+'''
 shape = Shape(root)
 root.after(1000, shape.update)
 root.mainloop()
