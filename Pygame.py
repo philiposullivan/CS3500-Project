@@ -1,4 +1,4 @@
-from python import Baby, IncEnviornment
+from babyAndEnvironment import Baby, IncEnviornment
 
 from tkinter import *
 from tkinter.ttk import *
@@ -16,6 +16,8 @@ w = 600
 h = 400
 x = w/2
 y = h/2
+my_frame = Frame(root, width=600, height=400) 
+
 
 
 from tkinter import *
@@ -149,7 +151,15 @@ class Shape():
 #self.update() Think this could be used to get the interface to update
 
     
-heartrate = Label(root, text = str("Heart Rate"))
+
+
+Label(root, text = 'Noenatal Intesive Care Unit Monitor', font =(
+  'Verdana', 15)).pack(side = TOP, pady = 10) 
+
+shape = Shape(root)
+
+my_frame.pack(fill="both", expand=True)
+heartrate = Label(root, text = "Heart Rate")
 heartrate.place(x=15, y=100)
 temperature = Label(root, text = "Temperature")
 temperature.place(x=15, y=200)
@@ -159,7 +169,8 @@ humidity = Label(root, text = "Humidity")
 humidity.place(x=15, y=400)
 bloodpressure = Label(root, text = "Bloodpressure")
 bloodpressure.place(x=15, y=500)
-Label(root, text = 'Noenatal Intesive Care Unit Monitor', font =('Verdana', 15)).pack(side = TOP, pady = 10) 
+
+
 
 heartrateValues = Label(root, text = (str(a.HR)))
 heartrateValues.place(x=200, y=100)
@@ -171,6 +182,6 @@ humidityValues = Label(root, text = b.humidity)
 humidityValues.place(x=200, y=400)
 bloodpressureValues = Label(root, text = (a.BP[0], "/", a.BP[1]))
 bloodpressureValues.place(x=200, y=500)
-shape = Shape(root)
+
 root.after(1000, shape.update)
 root.mainloop()
