@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-import vitalsUI
+import python1
 
 def startProgram():
     failed = False
@@ -23,9 +23,9 @@ def startProgram():
         }
 
         window.destroy()
-        vitalsUI.startProject(vitalsInput)
+        python1.startProject(vitalsInput)
 
-window=Tk()
+window=python1.root
 v0=IntVar()
 v0.set(1)
 
