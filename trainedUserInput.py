@@ -25,7 +25,7 @@ def startProgram():
         window.destroy()
         python1.startProject(vitalsInput)
 
-window=python1.root
+window=vitalsUI.root
 v0=IntVar()
 v0.set(1)
 
