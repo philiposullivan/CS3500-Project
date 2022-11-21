@@ -23,7 +23,7 @@ def startProgram():
         }
 
         window.destroy()
-        python1.startProject(vitalsInput)
+        vitalsUI.startProject(vitalsInput)
 
 window=vitalsUI.root
 v0=IntVar()
