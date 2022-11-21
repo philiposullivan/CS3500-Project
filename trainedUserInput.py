@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-import python1
+import vitalsUI
 
 def startProgram():
     failed = False
