@@ -11,6 +11,7 @@ root.withdraw()
 a = Baby()
 b = IncEnviornment()
 
+#defining vital values to be used later
 idealHR = 0
 maxHR = 0  
 minHR = 0 
@@ -18,6 +19,14 @@ minHR = 0
 idealTemp = 0 
 maxTemp = 0 
 minTemp = 0 
+
+idealBP = 0
+maxBP = 0
+minBP = 0
+
+idealoxygen = 0
+
+idealhumidity = 0
 
 
 class Shape():
@@ -32,7 +41,7 @@ class Shape():
         #Label(root, image=logo).pack(side="right")
     
         Title = Label(root, text = 'Neonatal Intesive Care Unit Monitor', font =('Verdana', 15), background='red', padding=10)
-        Title.place( x=0,y=0)
+        Title.place(x=0,y=0)
 
         heartrate = Label(root, text = str("Heart Rate"))
         heartrate.place(x=15, y=100)
@@ -132,28 +141,45 @@ class Shape():
         bloodpressure = Label(root, text = "Bloodpressure")
         bloodpressure.place(x=15, y=500)
 
+        global idealHR
         global maxHR
         global minHR
 
+        global idealHR
         global maxTemp
         global minTemp
 
+        global idealBP
+        global maxBP
+        global minBP
+
+        global idealoxygen
+
+        global idealhumidity
+
+        #heart rate
         if a.vitals["HR"] > int(maxHR) or a.vitals["HR"] < int(minHR):
             self.HRcolour = 'red'
+            print(maxHR, minHR)
         else:
             self.HRcolour = 'green'
+            print("this is the ",idealHR)
+        #temperature
         if a.vitals["Temp"] > int(maxTemp) or a.vitals["Temp"] < int(minTemp):
             self.Tempcolour = 'red'
         else:
             self.Tempcolour = 'green'
+        #oxygen
         if b.vars[1] <  20:
             self.Oxygencolour = 'red'
         else:
             self.Oxygencolour = 'green'
+        #humidity
         if b.vars[0] > 35 or b.vars[0] < 20:
             self.humiditycolour = 'red'
         else:
             self.humiditycolour = 'green'
+        #blood pressure
         if a.vitals["BP"][0] >200 or a.vitals["BP"][0] < 60:
             self.BPcolour = 'red'
         else:

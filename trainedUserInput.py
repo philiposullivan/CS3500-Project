@@ -34,6 +34,11 @@ def startProgram():
         "idealTemp": idealTempEntry.get(),
         "maxTemp": maxTempEntry.get(),
         "minTemp": maxTempEntry.get(),
+        "idealBP": idealBPEntry.get(),
+        "maxBP": maxBPEntry.get(),
+        "minBP": minBPEntry.get(),
+        "idealoxygen": oxygenEntry.get(),
+        "idealhumidity": humidityEntry.get() 
         }
 
         #kills input window, launches vitals window with doctors vitals
