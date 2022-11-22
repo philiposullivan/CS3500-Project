@@ -45,7 +45,7 @@ def startProgram():
         window.destroy()
         vitalsUI.startProject(vitalsInput)
 
-window=Tk()
+window=vitalsUI.root
 v0=IntVar()
 v0.set(1)
 
