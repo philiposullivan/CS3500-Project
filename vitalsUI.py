@@ -20,7 +20,6 @@ maxTemp = 0
 minTemp = 0 
 
 
-
 class Shape():
     def __init__(self, master):
         self.master = master
@@ -32,7 +31,7 @@ class Shape():
         #logo = PhotoImage(file="C:\Users\Tim\Downloads\icons8-heart-with-pulse-16.png")
         #Label(root, image=logo).pack(side="right")
     
-        Title = Label(root, text = 'Noenatal Intesive Care Unit Monitor', font =('Verdana', 15), background='red', padding=10)
+        Title = Label(root, text = 'Neonatal Intesive Care Unit Monitor', font =('Verdana', 15), background='red', padding=10)
         Title.place( x=0,y=0)
 
         heartrate = Label(root, text = str("Heart Rate"))
@@ -148,9 +147,9 @@ class Shape():
         else:
             self.Tempcolour = 'green'
         if b.vars[1] <  20:
-            self.Oxygenecolour = 'red'
+            self.Oxygencolour = 'red'
         else:
-            self.Oxygenecolour = 'green'
+            self.Oxygencolour = 'green'
         if b.vars[0] > 35 or b.vars[0] < 20:
             self.humiditycolour = 'red'
         else:
@@ -174,7 +173,7 @@ class Shape():
                             width = 2)
         
         self.canvas.create_oval(320, 270, 400, 350,
-                            outline = "black",fill = self.Oxygenecolour,
+                            outline = "black",fill = self.Oxygencolour,
                             width = 2)
 
         self.canvas.create_oval(320, 370, 400, 450,
@@ -216,7 +215,7 @@ heartrateValues = Label(root, text = (str(a.HR)))
 heartrateValues.place(x=200, y=100)
 temperatureValues = Label(root, text = (a.Temp))
 temperatureValues.place(x=200, y=200)
-oxygenValues = Label(root, text = b.oxygene)
+oxygenValues = Label(root, text = b.oxygen)
 oxygenValues.place(x=200, y=300)
 humidityValues = Label(root, text = b.humidity)
 humidityValues.place(x=200, y=400)
