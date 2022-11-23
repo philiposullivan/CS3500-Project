@@ -5,20 +5,24 @@ import random
 class TestStringMethods(unittest.TestCase):
 
     def test_random(self):
-        maxHR = 70 
-        minHR = 30
+        maxHR = 160 
+        minHR = 120
 
-        maxTemp = 50
-        minTemp = 30 
+        maxTemp = 39
+        minTemp = 35
 
-        maxBP = 120
-        minBP = 80
+        maxBP = 64
+        minBP = 41
 
-        maxOxygen = 120
+        maxOxygen = 22
+        minOxygen = 18
 
-        currentHR = random.randint(120,160)
+        MaxHumidity = 90
+        MinHumidity= 30
+
+        currentHR = random.randint(minHR, maxHR)
         currentTemp = random.randint(35,39)
-        currentBP =  [random.randint(41,64),random.randint(41,64)]
+        currentBP = [random.randint(41,64),random.randint(41,64)]
         currentOxygen = random.randint(18,22)
         currentHumidity = random.randint(30,90)
 
@@ -32,19 +36,41 @@ class TestStringMethods(unittest.TestCase):
         else:
             self.assertEqual(vitalsUI.checkBabyVitals(currentTemp, maxTemp,  minTemp),  'green') 
 
+        if currentBP[0] > maxBP or currentBP[0] < minBP:
+            self.assertEqual(vitalsUI.checkBabyVitals(currentBP[0], maxBP, minBP), 'red')
+        else:
+            self.assertEqual(vitalsUI.checkBabyVitals(currentBP[0], maxBP, minBP), 'green')
+
+        if currentOxygen > maxOxygen or currentOxygen < minOxygen:
+            self.assertEqual(vitalsUI.checkBabyVitals(currentOxygen, maxOxygen, minOxygen), 'red')
+        else:
+            self.assertEqual(vitalsUI.checkBabyVitals(currentOxygen, maxOxygen, minOxygen), 'green')
+
+        if currentHumidity > MaxHumidity or currentHumidity < MinHumidity:
+            self.assertEqual(vitalsUI.checkBabyVitals(currentHumidity, MaxHumidity, MinHumidity), 'red')
+        else:
+            self.assertEqual(vitalsUI.checkBabyVitals(currentHumidity, MaxHumidity, MinHumidity), 'green')
+
 
     def test_red(self):
-        self.assertEqual(vitalsUI.checkBabyVitals(150, 120,  70),  'red')
-        self.assertEqual(vitalsUI.checkIncVitalsHumidity(50, 10), 'red')
-        self.assertEqual(vitalsUI.checkIncVitals(10, 50), 'red')
+        currentValue =  random.randint(130, 150)
+        currentMax =  random.randint(100, 120)
+        currentMin =  random.randint(50, 70)
 
+
+        self.assertEqual(vitalsUI.checkBabyVitals(currentValue, currentMax,  currentMin),  'red')
+        self.assertEqual(vitalsUI.checkIncVitalsHumidity(currentValue, currentMin), 'red')
+        self.assertEqual(vitalsUI.checkIncVitals(currentMin, currentMax), 'red')
 
 
     def test_green(self):
-       self.assertEqual(vitalsUI.checkBabyVitals(80, 120,  70),  'green') 
-       self.assertEqual(vitalsUI.checkIncVitalsHumidity(20, 30), 'green')
-       self.assertEqual(vitalsUI.checkIncVitals(30, 20), 'green')
+        currentValue =  random.randint(80, 89)
+        currentMax =  random.randint(100, 120)
+        currentMin =  random.randint(50, 70)
+
+        self.assertEqual(vitalsUI.checkBabyVitals(currentValue, currentMax,  currentMin),  'green') 
+        self.assertEqual(vitalsUI.checkIncVitalsHumidity(random.randint(25, 34), random.randint(25, 39)), 'green')
+        self.assertEqual(vitalsUI.checkIncVitals(currentMax, currentMin), 'green')
 
 if __name__ == '__main__':
-    print("test")
     unittest.main()
