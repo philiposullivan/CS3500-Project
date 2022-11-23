@@ -1,21 +1,19 @@
-from vitalsUI import *
 import unittest
+import userInputfile as u
+import python1 as py
+vitals ={'maxHR': '2000', 'minHR': '100', 'Temp': '37', 'maxBP': '1200', 'minBP': '800', 'humidityV': '300', 'oxygenV': '200'}
+a = py.startProject(vitals)
+b = u.startProgram()
 
-class TestVitalUI(unittest.TestCase):
-    def __init__(self, master = None):
-        self.master = master
-        self.create()
-    def create(self):
-        self.canvas = Canvas(self.master)
-        self.canvas.create_oval(10, 10, 80, 80,
-                            outline = "black", fill = "white",
-                            width = 2)
-    def HRcolour(self):
-        testShape = Shape #makes object
-        #measure what colour it is when it instansiates, make it =originalHRcolour
-        #give it numbers that should result in colour changes
-        #check if colour change happend using UNITTEST (self.assertnotequals(originalHRcolour))
+class TestStringMethods(unittest.TestCase):
 
+    def colourtest(self):
+        for i in py.test():
+
+            self.assertEqual(i, 'red')
+        
+    def userinputtest(self):
+        #set u.HRentry(text = 'some value out of range') might need to make it global variable in u file
 
 if __name__ == '__main__':
     unittest.main()
