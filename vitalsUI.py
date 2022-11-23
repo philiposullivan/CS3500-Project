@@ -11,7 +11,6 @@ root.withdraw()
 a = Baby()
 b = IncEnviornment()
 
-#defining vital values to be used later
 idealHR = 0
 maxHR = 0  
 minHR = 0 
@@ -20,13 +19,6 @@ idealTemp = 0
 maxTemp = 0 
 minTemp = 0 
 
-idealBP = 0
-maxBP = 0
-minBP = 0
-
-idealoxygen = 0
-
-idealhumidity = 0
 
 
 class Shape():
@@ -37,11 +29,9 @@ class Shape():
         self.create()
         self.canvas = Canvas(self.master)
         self.canvas.pack(fill = BOTH, expand=2)
-        #logo = PhotoImage(file="C:\Users\Tim\Downloads\icons8-heart-with-pulse-16.png")
-        #Label(root, image=logo).pack(side="right")
     
-        Title = Label(root, text = 'Neonatal Intesive Care Unit Monitor', font =('Verdana', 15), background='red', padding=10)
-        Title.place(x=0,y=0)
+        Title = Label(root, text = 'Noenatal Intesive Care Unit Monitor', font =('Verdana', 15), background='red', padding=10)
+        Title.place( x=0,y=0)
 
         heartrate = Label(root, text = str("Heart Rate"))
         heartrate.place(x=15, y=100)
@@ -78,11 +68,9 @@ class Shape():
         self.canvas.create_oval(320, 220, 400, 300,
                             outline = "black",fill = "white",
                             width = 2)
-
         self.canvas.create_oval(320, 320, 400, 400,
                             outline = "black",fill = "white",
                             width = 2)
-
         self.canvas.create_oval(320, 420, 400, 500,
                             outline = "black",fill = "white",
                             width = 2)
@@ -141,46 +129,26 @@ class Shape():
         bloodpressure = Label(root, text = "Bloodpressure")
         bloodpressure.place(x=15, y=500)
 
-        global idealHR
-        global maxHR
-        global minHR
+        global minHR, maxHR, minBP, maxBP, Temp, oxygenV, humidityV
+        
 
-        global idealHR
-        global maxTemp
-        global minTemp
-
-        global idealBP
-        global maxBP
-        global minBP
-
-        global idealoxygen
-
-        global idealhumidity
-
-        #heart rate
         if a.vitals["HR"] > int(maxHR) or a.vitals["HR"] < int(minHR):
             self.HRcolour = 'red'
-            print(maxHR, minHR)
         else:
             self.HRcolour = 'green'
-            print("this is the ",idealHR)
-        #temperature
         if a.vitals["Temp"] > int(maxTemp) or a.vitals["Temp"] < int(minTemp):
             self.Tempcolour = 'red'
         else:
             self.Tempcolour = 'green'
-        #oxygen
-        if b.vars[1] <  20:
-            self.Oxygencolour = 'red'
+        if b.vars[1] <  oxygenV:
+            self.Oxygenecolour = 'red'
         else:
-            self.Oxygencolour = 'green'
-        #humidity
-        if b.vars[0] > 35 or b.vars[0] < 20:
+            self.Oxygenecolour = 'green'
+        if b.vars[0] > 35 or humidityV < 20:
             self.humiditycolour = 'red'
         else:
             self.humiditycolour = 'green'
-        #blood pressure
-        if a.vitals["BP"][0] >200 or a.vitals["BP"][0] < 60:
+        if a.vitals["BP"][0] >minBP or a.vitals["BP"][0] < maxBP:
             self.BPcolour = 'red'
         else:
             self.BPcolour = 'green'
@@ -199,7 +167,7 @@ class Shape():
                             width = 2)
         
         self.canvas.create_oval(320, 270, 400, 350,
-                            outline = "black",fill = self.Oxygencolour,
+                            outline = "black",fill = self.Oxygenecolour,
                             width = 2)
 
         self.canvas.create_oval(320, 370, 400, 450,
@@ -236,12 +204,11 @@ humidity.place(x=15, y=400)
 bloodpressure = Label(root, text = "Bloodpressure")
 bloodpressure.place(x=15, y=500)
 Label(root, text = 'Noenatal Intesive Care Unit Monitor', font =('Verdana', 15)).pack(side = TOP, pady = 10) 
-
 heartrateValues = Label(root, text = (str(a.HR)))
 heartrateValues.place(x=200, y=100)
 temperatureValues = Label(root, text = (a.Temp))
 temperatureValues.place(x=200, y=200)
-oxygenValues = Label(root, text = b.oxygen)
+oxygenValues = Label(root, text = b.oxygene)
 oxygenValues.place(x=200, y=300)
 humidityValues = Label(root, text = b.humidity)
 humidityValues.place(x=200, y=400)
@@ -253,17 +220,16 @@ bloodpressureValues.place(x=200, y=500)
 def startProject(vitalsInput):
     print(vitalsInput)
 
-    global maxHR
-    global minHR
-
-    global minTemp
-    global maxTemp
+    global minHR, maxHR, minBP, maxBP, Temp, oxygenV, humidityV
 
     maxHR = int(vitalsInput["maxHR"])
     minHR = int(vitalsInput["minHR"])  
+    maxBP = int(vitalsInput["maxBP"])
+    minBP = int(vitalsInput["minBP"])
+    Temp = int(vitalsInput["Temp"]) 
+    oxygenV = int(vitalsInput["oxygenV"]) 
+    humidityV = int(vitalsInput["humidityV"]) 
 
-    minTemp = int(vitalsInput["maxTemp"]) 
-    maxTemp = int(vitalsInput["minTemp"])
 
 
     root.deiconify()
