@@ -1,19 +1,50 @@
 import unittest
-import userInputfile as u
-import python1 as py
-vitals ={'maxHR': '2000', 'minHR': '100', 'Temp': '37', 'maxBP': '1200', 'minBP': '800', 'humidityV': '300', 'oxygenV': '200'}
-a = py.startProject(vitals)
-b = u.startProgram()
+import vitalsUI
+import random
 
 class TestStringMethods(unittest.TestCase):
 
-    def colourtest(self):
-        for i in py.test():
+    def test_random(self):
+        maxHR = 70 
+        minHR = 30
 
-            self.assertEqual(i, 'red')
-        
-    def userinputtest(self):
-        #set u.HRentry(text = 'some value out of range') might need to make it global variable in u file
+        maxTemp = 50
+        minTemp = 30 
+
+        maxBP = 120
+        minBP = 80
+
+        maxOxygen = 120
+
+        currentHR = random.randint(120,160)
+        currentTemp = random.randint(35,39)
+        currentBP =  [random.randint(41,64),random.randint(41,64)]
+        currentOxygen = random.randint(18,22)
+        currentHumidity = random.randint(30,90)
+
+        if currentHR > maxHR or currentHR < minHR: 
+            self.assertEqual(vitalsUI.checkBabyVitals(currentHR, maxHR,  minHR),  'red') 
+        else:
+            self.assertEqual(vitalsUI.checkBabyVitals(currentHR, maxHR,  minHR),  'green') 
+
+        if currentTemp > maxTemp or currentTemp < minTemp: 
+            self.assertEqual(vitalsUI.checkBabyVitals(currentTemp, maxTemp,  minTemp),  'red') 
+        else:
+            self.assertEqual(vitalsUI.checkBabyVitals(currentTemp, maxTemp,  minTemp),  'green') 
+
+
+    def test_red(self):
+        self.assertEqual(vitalsUI.checkBabyVitals(150, 120,  70),  'red')
+        self.assertEqual(vitalsUI.checkIncVitalsHumidity(50, 10), 'red')
+        self.assertEqual(vitalsUI.checkIncVitals(10, 50), 'red')
+
+
+
+    def test_green(self):
+       self.assertEqual(vitalsUI.checkBabyVitals(80, 120,  70),  'green') 
+       self.assertEqual(vitalsUI.checkIncVitalsHumidity(20, 30), 'green')
+       self.assertEqual(vitalsUI.checkIncVitals(30, 20), 'green')
 
 if __name__ == '__main__':
+    print("test")
     unittest.main()

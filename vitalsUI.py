@@ -131,28 +131,14 @@ class Shape():
 
         global minHR, maxHR, minBP, maxBP, Temp, oxygenV, humidityV
         
+        self.HRcolour = checkBabyVitals(a.vitals["HR"], int(maxHR), int(minHR))
+        self.Tempcolour = checkBabyVitals(a.vitals["Temp"], int(maxTemp), int(minTemp))
+        self.BPcolour =  checkBabyVitals(a.vitals["BP"][0], int(maxBP), int(minBP))
 
-        if a.vitals["HR"] > int(maxHR) or a.vitals["HR"] < int(minHR):
-            self.HRcolour = 'red'
-        else:
-            self.HRcolour = 'green'
-        if a.vitals["Temp"] > int(maxTemp) or a.vitals["Temp"] < int(minTemp):
-            self.Tempcolour = 'red'
-        else:
-            self.Tempcolour = 'green'
-        if b.vars[1] <  oxygenV:
-            self.Oxygenecolour = 'red'
-        else:
-            self.Oxygenecolour = 'green'
-        if b.vars[0] > 35 or humidityV < 20:
-            self.humiditycolour = 'red'
-        else:
-            self.humiditycolour = 'green'
-        if a.vitals["BP"][0] >minBP or a.vitals["BP"][0] < maxBP:
-            self.BPcolour = 'red'
-        else:
-            self.BPcolour = 'green'
-        
+        self.Oxygenecolour = checkIncVitals(b.vars[1], oxygenV)
+        self.humiditycolour = checkIncVitalsHumidity(b.vars[0], humidityV)
+
+                
         # Creates a circle of diameter 80
         
         self.canvas.create_oval(320, 70, 400, 150,
@@ -215,7 +201,24 @@ humidityValues.place(x=200, y=400)
 bloodpressureValues = Label(root, text = (a.BP[0], "/", a.BP[1]))
 bloodpressureValues.place(x=200, y=500)
 '''
+def checkBabyVitals(currentStat, max, min):
 
+    if currentStat > max or currentStat < min:
+        return 'red'
+
+    return 'green'
+
+def checkIncVitals(currentStat, max): 
+    if currentStat <  max:
+        return 'red'
+
+    return 'green'
+
+def checkIncVitalsHumidity(currentStat, humidityV):
+    if currentStat > 35 or humidityV < 20:
+        return 'red'
+
+    return 'green'
 
 def startProject(vitalsInput):
     print(vitalsInput)

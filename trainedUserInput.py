@@ -4,13 +4,13 @@ from tkinter import messagebox
 import vitalsUI
 
 def startProgram():
-    print("hello")
+
     rangeErrorMessage = str("These values could harm the baby\nPlease enter valid measurements for ")
 
     if len(maxHREntry.get()) == 0 or len(minHREntry.get()) == 0 or len(minBPEntry.get()) ==0 or len(maxBPEntry.get()) == 0 or len(humidityEntry.get()) == 0 or len(oxygenEntry.get()) ==0 or len(TempEntry.get()) ==0:
 
         messagebox.showwarning("Error", message="Please enter values for all variables")
-        print("hiii")
+
     else:    
         try:
           if int(TempEntry.get()) >35 and int(TempEntry.get())<40:
