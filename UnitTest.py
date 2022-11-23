@@ -1,6 +1,10 @@
 import unittest
 import vitalsUI
+import trainedUserInput as u
 import random
+
+
+#vitalRanges = {'maxHR': '2000', 'minHR':'2000', 'Temp': '37', 'maxBP': '1200', 'minBP': '800', 'humidityV': '300', 'oxygenV': '200'}
 
 class TestStringMethods(unittest.TestCase):
 
@@ -71,6 +75,8 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(vitalsUI.checkBabyVitals(currentValue, currentMax,  currentMin),  'green') 
         self.assertEqual(vitalsUI.checkIncVitalsHumidity(random.randint(25, 34), random.randint(25, 39)), 'green')
         self.assertEqual(vitalsUI.checkIncVitals(currentMax, currentMin), 'green')
-
+    def uinputtest(self):
+        #b=u.test(vitalRanges)
+        pass
 if __name__ == '__main__':
     unittest.main()
