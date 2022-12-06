@@ -1,25 +1,24 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-import python1 as py
+import vitalsUI as py
 
-testing = False
+errors = False
+
 
 def startProgram(entries):
-    print("hello")
     global errors
+    errors = False
     rangeErrorMessage = str("These values could harm the baby\nPlease enter valid measurements for ")
     failed = False
     print(entries)
-    for entry in entries:
-        if len(entries[entry]) == 0:
-            failed = True  
-        
+    # for entry in entries: 
+    #     if (not isinstance(entry, int)) and len(entries[entry]) == 0:
+    #         failed = True  
+    print(errors, "--> errors Value")    
     if failed:
         messagebox.showwarning("Error", message="Please enter values for all variables")
         errors = True
-        if testing:
-            return errors
     else:    
         try:
           if int(entries['Temp']) >35 and int(entries['Temp'])<40:
@@ -34,15 +33,15 @@ def startProgram(entries):
                             try:
                               if int(entries["humidityV"]) > 20 and int(entries["humidityV"]) < 95:                 
                                 try:
-                                  if int(entries['oxygenV']) > 15 and int(entries['oxygenV'])<30:                  
-                                    
+                                  if int(entries['oxygenV']) > 15 and int(entries['oxygenV'])<30:                
+                                    window.mainloop()
                                     errors = False
                                     messagebox.showinfo("Info submitted!")
                                     window.destroy()
                                     py.startProject(entries)
                                   else:
                                     errors = True
-                                    messagebox.showwarning("Error", message = (rangeErrorMessage+"Oxygene"))
+                                    messagebox.showwarning("Error", message = (rangeErrorMessage+"Oxygen"))
                                 except:
                                   errors = True
                                   messagebox.showwarning("Enter valid Oxygene number")
@@ -83,15 +82,15 @@ def startProgram(entries):
           errors = True
           messagebox.showwarning("Enter valid Temperature number")
           return errors
-        
-def test(vitals):
-    submitButton.configure(text ="Test", command =startProgram(vitals))
+    print("trying to return now!")
+    return errors      
 
-    testing = True
 def mapEntries():
-    vitalRanges ={'maxHR': maxHREntry.get(), 'minHR': minHREntry.get(), 'Temp': TempEntry.get(), 'maxBP': maxBPEntry.get(), 'minBP': minBPEntry.get(), 'humidityV': humidityEntry.get(), 'oxygenV': oxygenEntry.get()}
-    startProgram(vitalRanges)
+  vitalRanges ={'maxHR': maxHREntry.get(), 'minHR': minHREntry.get(), 'Temp': TempEntry.get(), 'maxBP': maxBPEntry.get(), 'minBP': minBPEntry.get(), 'humidityV': humidityEntry.get(), 'oxygenV': oxygenEntry.get()}
+  startProgram(vitalRanges)
+
 window=Tk()
+window.withdraw()
 v0=IntVar()
 v0.set(1)
 
@@ -135,9 +134,17 @@ oxygenEntry.place(x=200, y=350)
 submitButton = ttk.Button(window, text ="Submit", command =mapEntries)
 submitButton.place(x = 300, y = 400)
 
-vitalRanges ={'maxHR': '2000', 'minHR': '100', 'Temp': '37', 'maxBP': '1200', 'minBP': '800', 'humidityV': '300', 'oxygenV': '200'}
-test(vitalRanges)
 
-window.title('Value inputs')
-window.geometry("500x500")
-window.mainloop()
+def main():
+  window.deiconify()
+  print("test")
+  window.title('Value inputs')
+  window.geometry("500x500")
+  window.mainloop()
+
+if __name__ == '__main__':
+  print("Inside main on the start screen")
+  main()
+  # window.title('Value inputs')
+  # window.geometry("500x500")
+  # window.mainloop()
